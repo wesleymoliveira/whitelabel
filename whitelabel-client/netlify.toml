@@ -1,0 +1,14 @@
+[build]
+command = "yarn build"
+publish = ".next"
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
+
+[context.deploy-prevew.environment]
+NODE_OPTIONS = "--max_old_space_size=8192"
+NODE_VERSION = "14"
+
+[context.branch-deploy.environment]
+NODE_OPTIONS = "--max_old_space_size=8192"
+NODE_VERSION = "14"

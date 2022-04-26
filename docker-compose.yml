@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  whitelabel-postgres:
+    container_name: whitelabel-postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - strapi-app-network
+  whitelabel-strapi:
+    container_name: whitelabel-strapi
+    image: strapi/strapi
+    depends_on:
+      - whitelabel-postgres
+    working_dir: /whitelabel-strapi
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - 1337:1337
+    networks:
+      - strapi-app-network
+    volumes:
+      - ./whitelabel-strapi/:/whitelabel-strapi
+
+networks:
+  strapi-app-network:
+    driver: bridge
+
+volumes:
+  postgres:
+  whitelabel-strapi:

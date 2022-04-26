@@ -1,0 +1,30 @@
+body { 
+	background-color: #2D2D2C;
+}
+
+.quill,
+.ql-content,
+.ql-editor {
+	height: 100%;
+}
+
+.ql-container {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	background: #2d2d2c;
+	max-width: 350px;
+	font-size: 16px;
+	font-family: Roboto, sans-serif;
+	line-height: 24px;
+	font-weight: 400;
+	height: calc(400px - 45px);
+}
+
+.ql-toolbar {
+	display: block;
+	background: #eaecec;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	color: #ffffff;
+	max-width: 350px;
+}
